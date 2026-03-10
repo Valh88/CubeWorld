@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="5">
+    <PathDelim Value="\"/>
+    <Name Value="CuboWorldPackage"/>
+    <Type Value="RunAndDesignTime"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\"/>
+        <OtherUnitFiles Value="..\Src\cuboworld\"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <RequiredPkgs>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+    <Files>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_types.pas"/>
+        <UnitName Value="cw_types"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_chunk.pas"/>
+        <UnitName Value="cw_chunk"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_events.pas"/>
+        <UnitName Value="cw_events"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_storage_intf.pas"/>
+        <UnitName Value="cw_storage_intf"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_storage_mem.pas"/>
+        <UnitName Value="cw_storage_mem"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_generator_intf.pas"/>
+        <UnitName Value="cw_generator_intf"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_generator_flat.pas"/>
+        <UnitName Value="cw_generator_flat"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cw_world.pas"/>
+        <UnitName Value="cw_world"/>
+      </Item>
+      <Item>
+        <Filename Value="..\Src\cuboworld\cuboworld.pas"/>
+        <UnitName Value="cuboworld"/>
+      </Item>
+    </Files>
+  </Package>
+</CONFIG>
