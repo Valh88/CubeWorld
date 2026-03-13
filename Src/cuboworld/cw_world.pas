@@ -11,7 +11,7 @@ uses
 type
   { TWorld
     Manages chunks and provides block-level access.
-    Coordinates are assumed to be non-negative in this simple version. }
+    Supports negative block coordinates (floor division for chunk/local mapping). }
   TWorld = class
   private
     FChunks: TStringList;
@@ -129,14 +129,7 @@ var
   LocalX, LocalY, LocalZ: Integer;
   Chunk: TChunk;
 begin
-  // Simple non-negative mapping for MVP.
-  ChunkCoord.X := APos.X div CChunkSizeX;
-  ChunkCoord.Y := APos.Y div CChunkSizeY;
-  ChunkCoord.Z := APos.Z div CChunkSizeZ;
-
-  LocalX := APos.X mod CChunkSizeX;
-  LocalY := APos.Y mod CChunkSizeY;
-  LocalZ := APos.Z mod CChunkSizeZ;
+  BlockPosToChunkAndLocal(APos, ChunkCoord, LocalX, LocalY, LocalZ);
 
   if not TryGetChunk(ChunkCoord, Chunk) then
   begin
@@ -153,13 +146,7 @@ var
   LocalX, LocalY, LocalZ: Integer;
   Chunk: TChunk;
 begin
-  ChunkCoord.X := APos.X div CChunkSizeX;
-  ChunkCoord.Y := APos.Y div CChunkSizeY;
-  ChunkCoord.Z := APos.Z div CChunkSizeZ;
-
-  LocalX := APos.X mod CChunkSizeX;
-  LocalY := APos.Y mod CChunkSizeY;
-  LocalZ := APos.Z mod CChunkSizeZ;
+  BlockPosToChunkAndLocal(APos, ChunkCoord, LocalX, LocalY, LocalZ);
 
   Chunk := GetOrCreateChunk(ChunkCoord);
   Chunk.SetBlock(LocalX, LocalY, LocalZ, ABlock);

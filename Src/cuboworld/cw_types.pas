@@ -67,13 +67,14 @@ uses
 procedure BlockPosToChunkAndLocal(const APos: TBlockPos; out AChunk: TChunkCoord;
   out ALocalX, ALocalY, ALocalZ: Integer);
 begin
-  AChunk.X := APos.X div CChunkSizeX;
-  AChunk.Y := APos.Y div CChunkSizeY;
-  AChunk.Z := APos.Z div CChunkSizeZ;
+  // Floor-деление: корректно для отрицательных координат (div/mod в Pascal для отрицательных дают неверный результат).
+  AChunk.X := Trunc(Floor(APos.X / CChunkSizeX));
+  AChunk.Y := Trunc(Floor(APos.Y / CChunkSizeY));
+  AChunk.Z := Trunc(Floor(APos.Z / CChunkSizeZ));
 
-  ALocalX := APos.X mod CChunkSizeX;
-  ALocalY := APos.Y mod CChunkSizeY;
-  ALocalZ := APos.Z mod CChunkSizeZ;
+  ALocalX := APos.X - AChunk.X * CChunkSizeX;
+  ALocalY := APos.Y - AChunk.Y * CChunkSizeY;
+  ALocalZ := APos.Z - AChunk.Z * CChunkSizeZ;
 end;
 
 function ChunkAndLocalToBlockPos(const AChunk: TChunkCoord;
