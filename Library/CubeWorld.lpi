@@ -24,6 +24,11 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
+    <RequiredPackages>
+      <Item>
+        <PackageName Value="lualib"/>
+      </Item>
+    </RequiredPackages>
     <Units>
       <Unit>
         <Filename Value="CubeWorld.lpr"/>
@@ -39,6 +44,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..\Src\cuboworld"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>

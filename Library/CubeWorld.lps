@@ -8,13 +8,64 @@
       <Unit>
         <Filename Value="CubeWorld.lpr"/>
         <IsPartOfProject Value="True"/>
+        <CursorPos X="9" Y="10"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\Src\cuboworld\cuboworld.pas"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\lualib\package\lualib.pas"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="3" Y="10"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="31" Y="7"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\Src\cuboworld\cw_lua.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="56"/>
+        <CursorPos X="12" Y="77"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\lualib\src\lua54.pas"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="3">
+      <Position>
+        <Filename Value="CubeWorld.lpr"/>
+        <Caret Line="10" Column="9"/>
+      </Position>
+      <Position>
+        <Filename Value="CubeWorld.lpr"/>
+        <Caret Line="10" Column="9"/>
+      </Position>
+      <Position>
+        <Filename Value="..\Src\cuboworld\cw_lua.pas"/>
+        <Caret Line="12" Column="93"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\lualib\package\lualib.pas"/>
+        <Caret Line="7" Column="31"/>
+      </Position>
+      <Position>
+        <Filename Value="..\Src\cuboworld\cw_lua.pas"/>
+        <Caret Line="77" Column="12"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\lualib\src\lua54.pas"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
