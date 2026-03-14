@@ -14,7 +14,7 @@
       </Unit>
       <Unit>
         <Filename Value="..\Src\cuboworld\cuboworld.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -22,7 +22,7 @@
         <Filename Value="..\..\lualib\package\lualib.pas"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="31" Y="7"/>
+        <CursorPos X="11" Y="15"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -40,8 +40,14 @@
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\lualib\src\lualib54.pas"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="3">
+    <JumpHistory HistoryIndex="4">
       <Position>
         <Filename Value="CubeWorld.lpr"/>
         <Caret Line="10" Column="9"/>
@@ -59,11 +65,11 @@
         <Caret Line="7" Column="31"/>
       </Position>
       <Position>
-        <Filename Value="..\Src\cuboworld\cw_lua.pas"/>
-        <Caret Line="77" Column="12"/>
+        <Filename Value="..\..\lualib\package\lualib.pas"/>
+        <Caret Line="15" Column="11"/>
       </Position>
       <Position>
-        <Filename Value="..\..\lualib\src\lua54.pas"/>
+        <Filename Value="..\..\lualib\src\lualib54.pas"/>
       </Position>
     </JumpHistory>
     <RunParams>

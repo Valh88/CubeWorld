@@ -1,11 +1,13 @@
 -- Расширенный пример использования динамической библиотеки CubeWorld из Lua.
--- Библиотека libcubeworld.so должна лежать в каталоге Example рядом с этим скриптом.
+-- Библиотека libcubeworld.dll (Windows) или libcubeworld.so (Linux/macOS) — в каталоге Example рядом с этим скриптом.
+-- На Windows: соберите проект Library (CubeWorld.lpi) и скопируйте lib\x86_64-win64\libcubeworld.dll в Example.
 
 local here = debug.getinfo(1, "S").source
 here = (here:sub(2):match("(.*/)") or "./"):gsub("^@", "")
 
 package.preload["cubeworld"] = function()
-  local libpath = here .. "libcubeworld.so"
+  local libname = (os.getenv("OS") or ""):find("^Windows") and "libcubeworld.dll" or "libcubeworld.so"
+  local libpath = here .. libname
   local fn, err = package.loadlib(libpath, "luaopen_cubeworld")
   if not fn then
     error("cannot load " .. libpath .. ": " .. (err or "unknown"), 2)
