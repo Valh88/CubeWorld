@@ -40,6 +40,7 @@ type
   PChunkUserData = ^TChunkUserData;
   TChunkUserData = record
     Chunk: TChunk;
+    Coord: TChunkCoord;
   end;
 
 const
@@ -215,6 +216,7 @@ begin
 
   Ud := PChunkUserData(lua_newuserdatauv(L, SizeOf(TChunkUserData), 1));
   Ud^.Chunk := Chunk;
+  Ud^.Coord := Coord;
   luaL_setmetatable(L, CHUNK_MT_NAME);
   { Keep world alive while chunk is referenced (avoids use-after-free when world is GC'd). }
   lua_pushvalue(L, 1);
@@ -244,6 +246,7 @@ begin
 
   Ud := PChunkUserData(lua_newuserdatauv(L, SizeOf(TChunkUserData), 1));
   Ud^.Chunk := Chunk;
+  Ud^.Coord := Coord;
   luaL_setmetatable(L, CHUNK_MT_NAME);
   lua_pushvalue(L, 1);
   lua_setiuservalue(L, -2, 1);
@@ -327,28 +330,53 @@ end;
 
 function l_chunk_set_block(L: Plua_State): Integer; cdecl;
 var
+  Ud: PChunkUserData;
   C: TChunk;
   X, Y, Z: lua_Integer;
   B: TBlock;
+  WorldUd: PWorldUserData;
 begin
-  C := CheckChunk(L, 1);
+  Ud := PChunkUserData(luaL_checkudata(L, 1, CHUNK_MT_NAME));
+  if (Ud = nil) or (Ud^.Chunk = nil) then
+    luaL_error(L, 'invalid CubeWorld.Chunk');
+  C := Ud^.Chunk;
   X := luaL_checkinteger(L, 2);
   Y := luaL_checkinteger(L, 3);
   Z := luaL_checkinteger(L, 4);
   B.Id := TBlockId(luaL_checkinteger(L, 5));
 
   C.SetBlock(X, Y, Z, B);
+  { Уведомить мир об изменении чанка (OnChunkChanged и MarkChunkDirty). }
+  if lua_getiuservalue(L, 1, 1) = LUA_TUSERDATA then
+  begin
+    WorldUd := PWorldUserData(lua_touserdata(L, -1));
+    lua_pop(L, 1);
+    if (WorldUd <> nil) and (WorldUd^.World <> nil) then
+      WorldUd^.World.NotifyChunkChanged(Ud^.Coord);
+  end;
   Result := 0;
 end;
 
 function l_chunk_clear(L: Plua_State): Integer; cdecl;
 var
+  Ud: PChunkUserData;
   C: TChunk;
   B: TBlock;
+  WorldUd: PWorldUserData;
 begin
-  C := CheckChunk(L, 1);
+  Ud := PChunkUserData(luaL_checkudata(L, 1, CHUNK_MT_NAME));
+  if (Ud = nil) or (Ud^.Chunk = nil) then
+    luaL_error(L, 'invalid CubeWorld.Chunk');
+  C := Ud^.Chunk;
   B.Id := TBlockId(luaL_checkinteger(L, 2));
   C.Clear(B);
+  if lua_getiuservalue(L, 1, 1) = LUA_TUSERDATA then
+  begin
+    WorldUd := PWorldUserData(lua_touserdata(L, -1));
+    lua_pop(L, 1);
+    if (WorldUd <> nil) and (WorldUd^.World <> nil) then
+      WorldUd^.World.NotifyChunkChanged(Ud^.Coord);
+  end;
   Result := 0;
 end;
 

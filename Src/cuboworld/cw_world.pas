@@ -33,6 +33,9 @@ type
     function GetBlock(const APos: TBlockPos): TBlock;
     procedure SetBlock(const APos: TBlockPos; const ABlock: TBlock);
 
+    { Уведомить о изменении чанка (например, при изменении через chunk:set_block из Lua). }
+    procedure NotifyChunkChanged(const ACoord: TChunkCoord);
+
     { Вызывать из цикла движка каждый кадр. Резерв для выгрузки далёких чанков,
       сохранения грязных чанков и т.п. }
     procedure Update(const ADeltaTimeSec: Single); virtual;
@@ -157,6 +160,14 @@ begin
 
   if Assigned(FOnChunkChanged) then
     FOnChunkChanged(ChunkCoord);
+end;
+
+procedure TWorld.NotifyChunkChanged(const ACoord: TChunkCoord);
+begin
+  if Assigned(FStorage) then
+    FStorage.MarkChunkDirty(ACoord);
+  if Assigned(FOnChunkChanged) then
+    FOnChunkChanged(ACoord);
 end;
 
 procedure TWorld.Update(const ADeltaTimeSec: Single);
